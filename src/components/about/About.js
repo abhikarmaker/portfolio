@@ -21,7 +21,7 @@ export default class About extends Component {
                 );
               })}
              <div className="download">
-            <a href="../files/Resume.pdf" target="_blank" rel="noferrer" className="button">Download Resume</a>
+            <a href="portfolio/files/Resume.pdf" target="_blank" rel="noferrer" className="button">Download Resume</a>
           </div>
           </div>
          
