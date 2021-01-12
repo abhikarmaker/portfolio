@@ -179,7 +179,7 @@ let resumeData = {
         "name":"Portfolio",
         "description":"The Postfolio Website is made based on React JS and local JSON based APIs, build from scratch.",
         "imgurl":"images/portfolio/project2.jpg",
-        "link":"https://abhikarmaker-portfolio-4bb20.web.app/",
+        "link":"https://abhikarmaker.github.io/portfolio/",
         "githubLink":"https://github.com/abhikarmaker/portfolio",
         "fabIcon":"fa fa-github"
       },
