@@ -2,7 +2,8 @@ import React, { Component } from "react";
 
 export default class portfolio extends Component {
   render() {
-    let resumeData = this.props.resumeData;
+    const resumeData = this.props.resumeData || {};
+    const projects = Array.isArray(resumeData.portfolio) ? resumeData.portfolio : [];
     return (
       <section id="portfolio">
         <div className="row">
@@ -10,30 +11,35 @@ export default class portfolio extends Component {
             <h1>Check Out Some of My Works</h1>
             <div id="portfolio-wrapper">
               {/* className="bgrid-quarters s-bgrid-thirds cf" */}
-              {resumeData.portfolio &&
-                resumeData.portfolio.map((item) => {
+              {projects.map((item) => {
                   return (
                     <React.Fragment key={item.id}>
                       <div className="columns portfolio-item">
-                        {/* <div className="item-wrap">  */}
-                        <a href={item.link} target="_blank" rel="noreferrer">
+                        <a href={item.link} target="_blank" rel="noreferrer noopener" className="portfolio-link">
                           <img
-                            src={`${item.imgurl}`}
+                            src={`${process.env.PUBLIC_URL}/${item.imgurl}`}
                             className="item-img"
-                            alt=""
-                          />{" "}
+                            alt={`${item.name} preview`}
+                            loading="lazy"
+                            decoding="async"
+                          />
                         </a>
-                        <h5>{item.name}</h5>
-                        <p>
-                          {item.description}{" "}
-                          <a
-                            href={item.githubLink}
-                            target="_blank"
-                            rel="noreferrer"
-                          >
-                            <i className={item.fabIcon} />
-                          </a>
-                        </p>
+                        <div className="portfolio-copy">
+                          <h5>{item.name}</h5>
+                          <p>{item.description}</p>
+                          {item.githubLink ? (
+                            <a
+                              href={item.githubLink}
+                              target="_blank"
+                              rel="noreferrer noopener"
+                              aria-label={`${item.name} source code`}
+                              className="portfolio-github"
+                            >
+                              <i className={item.fabIcon} />
+                              <span className="sr-only">{item.name} source code</span>
+                            </a>
+                          ) : null}
+                        </div>
                       </div>
                     </React.Fragment>
                   );
