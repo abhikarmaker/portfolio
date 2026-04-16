@@ -1,9 +1,44 @@
 import React, { Component } from "react";
 
+const KEYWORD_PATTERNS = [
+  { label: "Automation", pattern: /\bautomat(e|ed|ion|ing)\b/i },
+  { label: "Manual Testing", pattern: /\bmanual\b/i },
+  { label: "API Testing", pattern: /\bapi\b/i },
+  { label: "Postman", pattern: /\bpostman\b/i },
+  { label: "SQL", pattern: /\bsql\b/i },
+  { label: "PyTest", pattern: /\bpytest\b/i },
+  { label: "Azure AD", pattern: /\bazure ad\b/i },
+  { label: "Active Directory", pattern: /\bactive directory\b/i },
+  { label: "Windows", pattern: /\bwindows\b/i },
+  { label: "Linux", pattern: /\blinux\b/i },
+  { label: "Cloud", pattern: /\bcloud\b/i },
+  { label: "Regression", pattern: /\bregression\b/i },
+  { label: "Defect Tracking", pattern: /\bdefect|bug|jira|mantis\b/i },
+  { label: "Integration Testing", pattern: /\bintegration\b/i },
+  { label: "Security Testing", pattern: /\bsecurity|penetration\b/i },
+  { label: "Troubleshooting", pattern: /\btroubleshoot|resolv(e|ing)\b/i },
+  { label: "Collaboration", pattern: /\bcollaborat(e|ed|ion)\b/i },
+  { label: "Test Design", pattern: /\btest cases?|test plans?\b/i },
+];
+
+function extractKeywords(text) {
+  if (typeof text !== "string") {
+    return [];
+  }
+  const matches = KEYWORD_PATTERNS.filter((item) => item.pattern.test(text)).map(
+    (item) => item.label
+  );
+  return matches.slice(0, 4);
+}
+
 export default class resume extends Component {
 
   render() {
-    let resumeData = this.props.resumeData;
+    const resumeData = this.props.resumeData || {};
+    const education = Array.isArray(resumeData.education) ? resumeData.education : [];
+    const work = Array.isArray(resumeData.work) ? resumeData.work : [];
+    const certifications = Array.isArray(resumeData.certifications) ? resumeData.certifications : [];
+    const skills = Array.isArray(resumeData.skills) ? resumeData.skills : [];
 
     return (
       <div>
@@ -15,8 +50,7 @@ export default class resume extends Component {
               </h1>
             </div>
             <div className="nine columns main-col">
-              {resumeData.education &&
-                resumeData.education.map((item) => {
+              {education.map((item) => {
                   return (
                     <React.Fragment key={item.id}>
                       <div className="row item">
@@ -47,10 +81,16 @@ export default class resume extends Component {
             </div>
 
             <div className="nine columns main-col">
-              {resumeData.work &&
-                resumeData.work.map((item) => {
+              {work.map((item) => {
+                  const achievements = Array.isArray(item.achievements)
+                    ? item.achievements
+                    : Object.values(item.Achievements || {}).filter(Boolean);
+                  const endDate = item.YearOfLeaving
+                    ? `${item.MonthOfLeaving} ${item.YearOfLeaving}`
+                    : item.MonthOfLeaving;
+
                   return (
-                    <React.Fragment key={item.CompanyName}>
+                    <React.Fragment key={item.id}>
                       <div className="row item">
                         <div className="twelve columns">
                           <h3>{item.Title}</h3>
@@ -58,8 +98,7 @@ export default class resume extends Component {
                             {item.CompanyName}
                             <span>&bull;</span>{" "}
                             <em className="date">
-                              {item.StartingMonthAndYear}- {item.MonthOfLeaving}{" "}
-                              {item.YearOfLeaving}
+                              {item.StartingMonthAndYear} - {endDate}
                             </em>
                             <span>&bull;</span>{" "}{item.address}
                           </p>
@@ -68,14 +107,27 @@ export default class resume extends Component {
                             Roles & Responsibilities
                           </h1>
                             <ul className="roles">
-                              <li>{item.Achievements.a1}</li>
-                              <li>{item.Achievements.a2}</li>
-                              <li>{item.Achievements.a3}</li>
-                              <li>{item.Achievements.a4}</li>
-                              <li>{item.Achievements.a5}</li>
-                              <li>{item.Achievements.a6}</li>
-                              <li>{item.Achievements.a7}</li>
-                              <li>{item.Achievements.a8}</li>
+                              {achievements.map((achievement, index) => {
+                                const keywords = extractKeywords(achievement);
+
+                                return (
+                                  <li key={`${item.id}-${index}`} className="role-item">
+                                    <p className="role-text">{achievement}</p>
+                                    {keywords.length ? (
+                                      <div className="role-keywords" aria-label="Key skills">
+                                        {keywords.map((keyword) => (
+                                          <span
+                                            key={`${achievement}-${keyword}`}
+                                            className="role-chip"
+                                          >
+                                            {keyword}
+                                          </span>
+                                        ))}
+                                      </div>
+                                    ) : null}
+                                  </li>
+                                );
+                              })}
                             </ul>                          
                         </div>
                       </div>
@@ -93,8 +145,11 @@ export default class resume extends Component {
             </div>
 
             <div className="nine columns main-col">
-              {resumeData.certifications &&
-                resumeData.certifications.map((item) => {
+              {certifications.map((item) => {
+                  const hasCredentialLink =
+                    typeof item.credential === "string" &&
+                    /^https?:\/\//.test(item.credential);
+
                   return (
                     <React.Fragment key={item.id}>
                       <div className="row item">
@@ -105,15 +160,21 @@ export default class resume extends Component {
                             <span>&bull;</span>{" "}
                             <em className="date">{item.issueDate}</em>
                           </p>
-                          <p className="info">
-                            <a
-                              href={item.credential}
-                              target="_blank"
-                              rel="noreferrer"
-                            >
-                              Credential
-                            </a>
-                          </p>
+                          {item.credential ? (
+                            <p className="info">
+                              {hasCredentialLink ? (
+                                <a
+                                  href={item.credential}
+                                  target="_blank"
+                                  rel="noreferrer noopener"
+                                >
+                                  Credential
+                                </a>
+                              ) : (
+                                item.credential
+                              )}
+                            </p>
+                          ) : null}
                         </div>
                       </div>
                     </React.Fragment>
@@ -132,18 +193,17 @@ export default class resume extends Component {
               {/* <p>{resumeData.skillsDescription}</p> */}
               <div className="bars">
                 <ul className="skills">
-                  {resumeData.skills &&
-                    resumeData.skills.map((item) => {
+                  {skills.map((item) => {
                       return (
                         <React.Fragment key={item.id}>
-                          <li>
+                          <li className="skill-card">
+                            <div className="skill-meta">
+                              <em>{item.skillname}</em>
+                              <i className={item.className} aria-hidden="true"></i>
+                            </div>
                             <span
                               className={`bar-expand ${item.skillname.toLowerCase()}`}
                             ></span>
-                            <em>
-                              {item.skillname}{" "}
-                              <i className={item.className}></i>
-                            </em>
                           </li>
                         </React.Fragment>
                       );
