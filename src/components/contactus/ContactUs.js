@@ -7,6 +7,7 @@ export default class contactus extends Component {
     const phoneNumber = typeof resumeData.phoneNumber === "string" ? resumeData.phoneNumber : "";
     const phoneHref = `tel:${phoneNumber.replace(/[^+\d]/g, '')}`;
     const easyTechLogoSrc = `${process.env.PUBLIC_URL}/images/easytech-logo.png`;
+    const tfdLogoSrc = `${process.env.PUBLIC_URL}/images/techfordad-logo.svg`;
 
     return (
       <section id="contactus">
@@ -78,6 +79,25 @@ export default class contactus extends Component {
               </span>
               <span className="contact-easytech-label contact-profile-label">
                 <strong>EasyTech Vancouver</strong>
+                <span className="contact-profile-meta">Owner</span>
+              </span>
+            </a>
+            <a
+              href="https://techfordad.com"
+              target="_blank"
+              rel="noreferrer noopener"
+              className="contact-easytech-link contact-profile-link"
+              aria-label="Owner of techfordad.com"
+            >
+              <span className="contact-easytech-mark contact-tfd-mark" aria-hidden="true">
+                <img
+                  src={tfdLogoSrc}
+                  alt=""
+                  className="contact-easytech-logo"
+                />
+              </span>
+              <span className="contact-easytech-label contact-profile-label">
+                <strong>Tech For Dad</strong>
                 <span className="contact-profile-meta">Owner</span>
               </span>
             </a>

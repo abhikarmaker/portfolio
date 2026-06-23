@@ -1311,6 +1311,10 @@ footer .row {
   font: 15px/1.25 "opensans-semibold", sans-serif !important;
 }
 
+#contactus .contact-tfd-mark {
+  background: #1a3a8f;
+}
+
 #contactus .contact-easytech-logo {
   width: 118px;
   height: 28px;
