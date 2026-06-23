@@ -6,7 +6,7 @@ export default class About extends Component {
     const aboutItems = Array.isArray(resumeData.aboutme) ? resumeData.aboutme : [];
     const name = resumeData.name || "Abhijeet Karmaker";
     return (
-      <section id="about">
+      <section id="about" aria-label="About Abhijeet Karmaker">
         <div className="row">
           <h1>About Me</h1>
           <div className="three columns">

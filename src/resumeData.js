@@ -264,6 +264,32 @@ let resumeData = {
     logoImage: "images/easytech-logo.png",
     bannerImage: "images/easytech-banner.png",
   },
+  techForDad: {
+    kicker: "Owner spotlight",
+    title: "Tech For Dad",
+    description:
+      "I also own TechForDad.com — a trusted review site helping seniors and their families choose the right technology. Every product is hands-on tested by real caregivers, with no sponsored rankings, ever.",
+    highlights: [
+      "30+ products hands-on tested by real caregivers",
+      "No sponsored rankings — performance and value only",
+      "Updated monthly with new products and price changes",
+    ],
+    categories: [
+      { icon: "🆘", label: "Medical Alert Systems", url: "https://www.techfordad.com/blog/best-medical-alert-systems.html" },
+      { icon: "📱", label: "Senior Phones", url: "https://www.techfordad.com/blog/best-cell-phones-for-seniors.html" },
+      { icon: "💻", label: "Tablets", url: "https://www.techfordad.com/blog/best-tablets-for-seniors.html" },
+      { icon: "📍", label: "GPS Trackers", url: "https://www.techfordad.com/blog/best-gps-trackers-for-seniors.html" },
+      { icon: "❤️", label: "Blood Pressure Monitors", url: "https://www.techfordad.com/blog/best-blood-pressure-monitors-for-seniors.html" },
+    ],
+    stats: [
+      { value: "30+", label: "Products Tested" },
+      { value: "5", label: "Review Categories" },
+      { value: "0", label: "Sponsored Rankings" },
+      { value: "Monthly", label: "Updates" },
+    ],
+    website: "https://techfordad.com",
+    bannerImage: "images/techfordad-banner.png",
+  },
 };
 
 export default resumeData;

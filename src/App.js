@@ -5,6 +5,7 @@ import About from './components/about/About';
 import Resume from './components/resume/Resume';
 import Portfolio from './components/portfolio/Portfolio';
 import EasyTech from './components/easytech/EasyTech';
+import TechForDad from './components/techfordad/TechForDad';
 import ContactUs from './components/contactus/ContactUs';
 import Footer from './components/footer/Footer';
 import resumeData from './resumeData';
@@ -18,6 +19,7 @@ function App() {
       <Resume resumeData={resumeData}/>
       <Portfolio resumeData={resumeData}/>
       <EasyTech resumeData={resumeData}/>
+      <TechForDad resumeData={resumeData}/>
       <ContactUs resumeData={resumeData}/>
       <Footer resumeData={resumeData}/>
     </div>

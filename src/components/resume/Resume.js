@@ -41,8 +41,8 @@ export default class resume extends Component {
     const skills = Array.isArray(resumeData.skills) ? resumeData.skills : [];
 
     return (
-      <div>
-        <section id="resume">
+      <React.Fragment>
+        <section id="resume" aria-label="Resume — Education, Experience, Certifications and Skills">
           <div className="row education">
             <div className="three columns header-col">
               <h1>
@@ -213,7 +213,7 @@ export default class resume extends Component {
             </div>
           </div>
         </section>
-      </div>
+      </React.Fragment>
     );
   }
 }

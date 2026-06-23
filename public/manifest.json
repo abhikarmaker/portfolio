@@ -1,25 +1,19 @@
 {
-  "short_name": "Abhijeet",
-  "name": "Abhijeet Karmaker | Web Developer Portfolio",
+  "short_name": "AK Portfolio",
+  "name": "Abhijeet Karmaker | Senior QA Engineer & Web Developer",
+  "description": "Personal portfolio of Abhijeet Karmaker, Senior QA Engineer at Fortinet and Web Developer based in Vancouver, BC.",
   "icons": [
     {
-      "src": "favicon.ico",
+      "src": "images/favicon.ico",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
-    },
-    {
-      "src": "favicon.ico",
-      "type": "image/ico",
-      "sizes": "192x192"
-    },
-    {
-      "src": "favicon.ico",
-      "type": "image/ico",
-      "sizes": "512x512"
     }
   ],
   "start_url": "/portfolio/",
+  "scope": "/portfolio/",
   "display": "minimal-ui",
   "theme_color": "#11abb0",
-  "background_color": "#ffffff"
+  "background_color": "#f6f3ee",
+  "lang": "en-CA",
+  "categories": ["portfolio", "professional"]
 }
