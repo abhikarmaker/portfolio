@@ -1312,7 +1312,19 @@ footer .row {
 }
 
 #contactus .contact-tfd-mark {
-  background: #1a3a8f;
+  min-width: 160px;
+  padding: 0;
+  overflow: hidden;
+  background: #0f2057;
+}
+
+#contactus .contact-tfd-banner {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: left center;
+  display: block;
+  border-radius: 10px;
 }
 
 #contactus .contact-easytech-logo {

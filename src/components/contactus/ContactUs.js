@@ -7,7 +7,7 @@ export default class contactus extends Component {
     const phoneNumber = typeof resumeData.phoneNumber === "string" ? resumeData.phoneNumber : "";
     const phoneHref = `tel:${phoneNumber.replace(/[^+\d]/g, '')}`;
     const easyTechLogoSrc = `${process.env.PUBLIC_URL}/images/easytech-logo.png`;
-    const tfdLogoSrc = `${process.env.PUBLIC_URL}/images/techfordad-logo.svg`;
+    const tfdBannerSrc = `${process.env.PUBLIC_URL}/images/techfordad-banner.png`;
 
     return (
       <section id="contactus">
@@ -91,9 +91,9 @@ export default class contactus extends Component {
             >
               <span className="contact-easytech-mark contact-tfd-mark" aria-hidden="true">
                 <img
-                  src={tfdLogoSrc}
+                  src={tfdBannerSrc}
                   alt=""
-                  className="contact-easytech-logo"
+                  className="contact-tfd-banner"
                 />
               </span>
               <span className="contact-easytech-label contact-profile-label">
